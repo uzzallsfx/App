@@ -2,32 +2,70 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Opening App</title>
+  <title>Custom Browser App</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       overflow: hidden;
-      background: linear-gradient(to bottom right, #2a2a72, #009ffd); /* Gradient background */
-      color: #fff;
+      background: linear-gradient(to bottom right, #2a2a72, #009ffd);
+      font-family: Arial, sans-serif;
     }
     #particles-js {
       position: absolute;
       width: 100%;
       height: 100%;
-      z-index: 1;
+      z-index: 0;
     }
-    iframe {
+    .browser {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
+      top: 10%;
+      left: 5%;
+      width: 90%;
+      height: 80%;
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
       z-index: 2;
       opacity: 0;
       transition: opacity 1s ease-in-out;
+      display: flex;
+      flex-direction: column;
+    }
+    .browser-header {
+      background: #e0e0e0;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      border-bottom: 1px solid #ccc;
+    }
+    .browser-header .dot {
+      width: 12px;
+      height: 12px;
+      background: #ff5f56;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    .browser-header .dot.yellow {
+      background: #ffbd2e;
+    }
+    .browser-header .dot.green {
+      background: #27c93f;
+    }
+    .browser-header .title {
+      margin-left: 10px;
+      font-size: 16px;
+      color: #555;
+      font-weight: bold;
+    }
+    iframe {
+      flex: 1;
+      border: none;
+      width: 100%;
+      height: 100%;
     }
     #logo {
       position: absolute;
@@ -37,15 +75,15 @@
       z-index: 3;
       opacity: 1;
       transition: opacity 1s ease-in-out, transform 0.3s ease;
-      width: 150px;
-      height: 150px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.7); /* Glowing effect */
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
     }
     #logo:hover {
-      transform: scale(1.1); /* Slight grow effect on hover */
-      box-shadow: 0 0 60px rgba(255, 255, 255, 1); /* Stronger glow on hover */
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 0 60px rgba(255, 255, 255, 1);
     }
   </style>
 </head>
@@ -54,11 +92,19 @@
 <!-- Particles Background -->
 <div id="particles-js"></div>
 
+<!-- Custom Browser Frame -->
+<div class="browser" id="browser">
+  <div class="browser-header">
+    <div class="dot"></div>
+    <div class="dot yellow"></div>
+    <div class="dot green"></div>
+    <div class="title">Gedu School Site</div>
+  </div>
+  <iframe id="iframe" src="https://tinyurl.com/ghssccg" onload="onIframeLoaded()"></iframe>
+</div>
+
 <!-- Gedu School Logo -->
 <img id="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVQveOcefXDS8RaGZN5p2heCF_B2ROeViYLw&s" alt="Gedu School Logo">
-
-<!-- Embedded Website -->
-<iframe id="iframe" src="https://tinyurl.com/ghssccg" onload="onIframeLoaded()"></iframe>
 
 <!-- Particles.js script -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -68,7 +114,7 @@
   particlesJS('particles-js', {
     "particles": {
       "number": {
-        "value": 100
+        "value": 90
       },
       "color": {
         "value": "#ffffff"
@@ -80,11 +126,11 @@
         "value": 0.6
       },
       "size": {
-        "value": 5
+        "value": 4
       },
       "move": {
         "enable": true,
-        "speed": 1.5
+        "speed": 1.2
       }
     },
     "interactivity": {
@@ -99,10 +145,10 @@
   });
 
   function onIframeLoaded() {
-    // Fade out logo when iframe is fully loaded
+    // Hide the logo
     document.getElementById('logo').style.opacity = 0;
-    // Fade in iframe after load
-    document.getElementById('iframe').style.opacity = 1;
+    // Show the browser after iframe is loaded
+    document.getElementById('browser').style.opacity = 1;
   }
 </script>
 
