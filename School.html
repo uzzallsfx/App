@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Opening App</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: linear-gradient(to bottom right, #2a2a72, #009ffd); /* Gradient background */
+      color: #fff;
+    }
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    #logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      opacity: 1;
+      transition: opacity 1s ease-in-out, transform 0.3s ease;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.7); /* Glowing effect */
+    }
+    #logo:hover {
+      transform: scale(1.1); /* Slight grow effect on hover */
+      box-shadow: 0 0 60px rgba(255, 255, 255, 1); /* Stronger glow on hover */
+    }
+  </style>
+</head>
+<body>
+
+<!-- Particles Background -->
+<div id="particles-js"></div>
+
+<!-- Gedu School Logo -->
+<img id="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVQveOcefXDS8RaGZN5p2heCF_B2ROeViYLw&s" alt="Gedu School Logo">
+
+<!-- Embedded Website -->
+<iframe id="iframe" src="https://tinyurl.com/ghssccg" onload="onIframeLoaded()"></iframe>
+
+<!-- Particles.js script -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<!-- Particles.js config -->
+<script>
+  particlesJS('particles-js', {
+    "particles": {
+      "number": {
+        "value": 100
+      },
+      "color": {
+        "value": "#ffffff"
+      },
+      "shape": {
+        "type": "circle"
+      },
+      "opacity": {
+        "value": 0.6
+      },
+      "size": {
+        "value": 5
+      },
+      "move": {
+        "enable": true,
+        "speed": 1.5
+      }
+    },
+    "interactivity": {
+      "events": {
+        "onhover": {
+          "enable": true,
+          "mode": "repulse"
+        }
+      }
+    },
+    "retina_detect": true
+  });
+
+  function onIframeLoaded() {
+    // Fade out logo when iframe is fully loaded
+    document.getElementById('logo').style.opacity = 0;
+    // Fade in iframe after load
+    document.getElementById('iframe').style.opacity = 1;
+  }
+</script>
+
+</body>
+</html>
